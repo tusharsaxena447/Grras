@@ -7,5 +7,8 @@ router.post('/insert', (req,res)=>{
     console.log(data)
     res.json({message : "inserted"})
 })
+router.get('/read', (req,res)=>{
+    res.send(data)
+})
 
 module.exports = router

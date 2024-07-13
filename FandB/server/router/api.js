@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const data = []
-
+const User = require('../models/users')
 
 router.post('/insert', (req,res)=>{
    data.push(req.body)

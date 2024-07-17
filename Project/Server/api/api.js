@@ -8,7 +8,7 @@ router.post('/reg', (req,res)=>{
     const email = req.body.email
     const pass = req.body.password
     // console.log(email,pass)
-    const record = User({email:email, password:pass})
+    const record = new User({email:email, password:pass})
     record.save()
     res.json({message:"Inserted"})
 })

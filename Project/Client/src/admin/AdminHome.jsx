@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -10,35 +10,38 @@ import Paper from '@mui/material/Paper';
 
 export default function Home() {
   const [users,setUsers] = useState([])
+  useEffect(()=>{
   axios.get('http://localhost:5000/api/getusers')
-  .then(res => setUsers(res.data))
+  .then(res => {setUsers(res.data)
+  console.log(res.data)})
+  },[])
+  
 
-  function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+  function createData(name, calories, fat ) {
+  return { name, calories, fat};
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-];
+const rows = 
+  users && users.map((user)=>{
+   return createData(user.email,user._id,user.password)
+  });
+// console.log(rows)
   return (
     <>
     <div className="container">
         <h1 className="text-3xl font-bold text-center">Admin Panel</h1>
         <div className="users">
-          {users && users.map((user)=>(
-            <div key={user.id}>
+            <div>
             <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="caption table">
-        <caption>A basic table example with a caption</caption>
+        <caption>Users Information</caption>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell align="right">User ID</TableCell>
+            <TableCell align="right">Password</TableCell>
+            
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -57,7 +60,6 @@ const rows = [
       </Table>
     </TableContainer>
             </div>
-          ))}
         </div>
     </div>
       

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const regSchema = mongoose.Schema({
     email:{
         type : String,
@@ -12,5 +11,4 @@ const regSchema = mongoose.Schema({
         minlength: 5
     }
 })
-
 module.exports = mongoose.model("user", regSchema)

@@ -23,8 +23,7 @@ export default function Register() {
       <input type="email" placeholder="Email" name="email" className="input" value={value.email} onChange={(e)=>{setValue({...value, email:e.target.value})}}/>
       <input type="password" placeholder="Password" name="password" className="input" value={value.password} onChange={(e)=>{setValue({...value, password:e.target.value})}} />
       <div className="login-with">
-        <h1>Already have an account?</h1><Link className='font-bold underline' to="/login">Login</Link>
-        
+        <h1>Already have an account?</h1><Link className='font-bold underline' to="/login">Login</Link>       
         
       </div>
       <button className="button-confirm">Let&apos;s go →</button>
